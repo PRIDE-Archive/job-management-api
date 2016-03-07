@@ -1,11 +1,11 @@
 # job-management-api
-Generic Java interfaces for managing jobs on computer cluster like LSF
+Generic Java interfaces for managing jobs on computer cluster like LSF.
 
 ## 1. Introduction ##
 
-Job submission and monitoring should be simple. This is the main motivation behind this Java API. One part of this project is a generic module which could used
-and expanded for any cluster implementation.
-The second part of this project is a LSF implementation using the interfaces of the generic module.
+Job submission and monitoring should be simple. This is the main motivation behind this Java API. One part of this project is a generic module which could be
+used to write your own cluster implementation.
+The second part of this project is a LSF cluster implementation using the interfaces of the generic module mentioned above.
 
 ## 2. LSF job submission and monitoring ##
 
@@ -16,6 +16,7 @@ A good starting point to use this API is the LSFManager class. The LSF manager i
 At the moment there are 2 ways which allow you to create a LSF job.
 #### 2.1 Using built-in 'LSFBsubCommandBuilder' ####
 
+```
 //Create a system command you would like to run
 SystemCommand systemCommand = new SystemCommand(command);
 //Create a bsub command using the 'LSFBsubCommandBuilder'
@@ -34,6 +35,7 @@ build();
 LSFJob lsfJob = new LSFJob(lsfCommand);
 
 #### 2.2 Create LSF bsub command directly ####
+```
 
 //Create a system command you would like to run
 SystemCommand systemCommand = new SystemCommand(command);
