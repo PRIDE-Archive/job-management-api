@@ -33,10 +33,11 @@ setReserveMemory(true).
 build();
 //Finally create the LSF job
 LSFJob lsfJob = new LSFJob(lsfCommand);
-
-#### 2.2 Create LSF bsub command directly ####
 ```
 
+#### 2.2 Create LSF bsub command directly ####
+
+```
 //Create a system command you would like to run
 SystemCommand systemCommand = new SystemCommand(command);
 //Create a bsub command directly
@@ -50,9 +51,11 @@ lsfBsubCommand.addCommandOption(LSFBsubOption.MAX_MEMORY, 500);
 lsfBsubCommand.addCommandOption(LSFBsubOption.RESERVE_MEMORY, true);
 //Finally create the LSF job
 LSFJob lsfJob = new LSFJob(lsfCommand);
+```
 
 ## 3. How to submit individual jobs ##
 
+```
 //...
 //Create a LSF job instance like described above
 LSFJob lsfJob = new LSFJob(bsubCommand);
@@ -60,9 +63,11 @@ LSFJob lsfJob = new LSFJob(bsubCommand);
 LSFJobSubmitter jobSubmitter = LSFManager.getLSFJobSubmitter();
 //Submit the job
 jobSubmitter.submitJob(lsfJob);
+```
 
 ## 4. How to submit multiple jobs ##
 
+```
 //...
 //Create a collection of LSF jobs
 Collection<LSFJob> jobs = ...;
@@ -70,12 +75,14 @@ Collection<LSFJob> jobs = ...;
 LSFJobSubmitter jobSubmitter = LSFManager.getLSFJobSubmitter();
 //Submit the job
 jobSubmitter.submitJobs(jobs);
+```
 
 ## 5. Job monitoring ##
 
 This API allows you to monitor batches of jobs. A batch can consist of 1 or multiple jobs. The submission process for job batches is a bit different then described in chapter 3 and 4. First of all you have to create a batch of jobs which you will then submit and monitor.
 ### 5.1 How to create a batch of jobs ###
 
+```
 //Create a collection of batch items
 Collection<LSFBatchItem> batchItems = &;
 //Create a LSF batch of jobs using the batch factory
@@ -84,13 +91,16 @@ LSFJobBatch jobBatch = batchFactory.createLSFBatch(batchItems);
 //Submit the LSF batch to the cluster
 LSFJobSubmitter jobSubmitter = LSFManager.getLSFJobSubmitter();
 jobSubmitter.submitBatch(jobBatch);
+```
 
 ### 5.2 How to monitor a batch ###
 
 The monitorBatch(...) method from the LSFBatchMonitor class returns a boolean flag, which indicates if all jobs of the batch finished successfully or not. (It might be that we need to expand that boolean flag to a monitor result object which gives you more useful information about how many jobs finished unsuccessfully and why)
+
+```
 //...
 LSFJobBatch jobBatch = &;
 //Monitor the LSF batch
 LSFBatchMonitor monitor = LSFManager.getLSFBatchMonitor();
 boolean monitorResult = monitor.monitorBatch(jobBatch);
-
+```
